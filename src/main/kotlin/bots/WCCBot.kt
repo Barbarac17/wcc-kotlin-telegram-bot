@@ -1,5 +1,6 @@
 package bots
 
+import GifDao
 import com.vdurmont.emoji.EmojiParser
 import org.telegram.telegrambots.bots.TelegramLongPollingBot
 import org.telegram.telegrambots.meta.api.methods.send.SendDocument
@@ -17,6 +18,9 @@ import java.io.File
 
 
 
+
+
+
 class WCCBot : TelegramLongPollingBot() {
 
 
@@ -24,7 +28,7 @@ class WCCBot : TelegramLongPollingBot() {
     override fun getBotUsername(): String {
         //return bot username
         // If bot username is @HelloKotlinBot, it must return
-        return "FloraCatbot"
+        return " :heart_eyes_cat: FloraCatbot :sunflower:"
     }
 
     override fun getBotToken(): String {
@@ -39,10 +43,11 @@ class WCCBot : TelegramLongPollingBot() {
         val messageCommand = update?.message?.text
 
 
-        val welcome = """ Olááá $nameSender lindo\! 
-        | testando meu bot 
-        | \/start \- tátátá
-        | \/vogue
+        val welcome = """ Olááá $nameSender lindeza\! 
+        | Esse bot é para te animar
+        | \/start \- informa os comandos
+        | \/vogue \- para você dançar gata
+        | \/todepre \- para animar vc
            """.trimMargin()
 
         try {
@@ -60,7 +65,7 @@ class WCCBot : TelegramLongPollingBot() {
             else if (messageCommand=="/vogue"){
                 val sendVideo = SendVideo().apply {
                     this.chatId = chatId
-                    this.caption = EmojiParser.parseToUnicode("Oláaa $nameSender :smiley_cat:")
+                    this.caption = EmojiParser.parseToUnicode("Vem dançar $nameSender :smiley_cat:")
                     this.video = InputFile().setMedia(File("C:\\Users\\user\\Desktop\\bot_telegram_kotlin\\wcc-kotlin-telegram-bot\\src\\main\\resources\\owlkitty-in-vogue-madonna.mp4"))
                     this.parseMode = "MarkdownV2"
                 }
@@ -70,11 +75,12 @@ class WCCBot : TelegramLongPollingBot() {
             }
 
             else if (messageCommand=="/todepre"){
+
                 val sendGif = SendVideo().apply {
-                    val gifS = GifDao()
+                    val gifS = GifDao().getGif()
                     this.chatId = chatId
-                    this.caption = EmojiParser.parseToUnicode("Oláaa $nameSender :smiley_cat:")
-                    this.video = InputFile().setMedia(gifS.getGif)
+                    this.caption = EmojiParser.parseToUnicode("Se anima $nameSender :smiley_cat:")
+                    this.video = InputFile().setMedia(gifS?.link)
                     this.parseMode = "MarkdownV2"
                 }
 

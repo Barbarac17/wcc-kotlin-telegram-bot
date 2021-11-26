@@ -2,7 +2,7 @@ import java.util.concurrent.atomic.AtomicInteger
 
 class GifDao {
 
-    private val gifDao = hashMapOf(
+    val gifDao = hashMapOf(
         0 to Gif(link = "https://media.giphy.com/media/11c7UUfN4eoHF6/giphy.gif", id = 0),
         1 to Gif(link = "https://media.giphy.com/media/DdGugw1M5eUsU/giphy.gif", id = 1),
         2 to Gif(link = "https://media.giphy.com/media/xT77XZrTKOxycjaYvK/giphy.gif", id = 2),
